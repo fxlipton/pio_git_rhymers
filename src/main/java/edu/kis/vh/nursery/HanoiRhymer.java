@@ -7,10 +7,6 @@ public class HanoiRhymer extends DefaultCountingOutRhymer {
         return TotalRejected;
     }
 
-    public void setTotalRejected(int TotalRejected){
-        this.TotalRejected = TotalRejected;
-    }
-
     protected int reportRejected() {
         return TotalRejected;
     }
