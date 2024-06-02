@@ -1,34 +1,93 @@
 package edu.kis.vh.nursery;
 
-public class defaultCountingOutRhymer {
+/**
+ * Ta klasa reprezentuje domyślny rymownik, 
+ * który jest prostą implementacją stosu przy użyciu tablicy.
+ */
+public class DefaultCountingOutRhymer {
 
-    private int[] NUMBERS = new int[12];
+    /**
+     * Rozmiar tablicy używanej do przechowywania elementów stosu.
+     */
+    private static final int ARRAY_SIZE = 12;
 
-    public int total = -1;
+    /**
+     * Stała reprezentująca początkowy stan stosu.
+     */
+    private static final int TOTAL = -1;
 
-    public void countIn(int in) {
+    /**
+     * Stała reprezentująca indeks, gdy stos jest pełny.
+     */
+    private static final int FULL = 11;
+
+    /**
+     * Tablica używana do przechowywania elementów stosu.
+     */
+    private final int[] NUMBERS = new int[ARRAY_SIZE];
+
+    /**
+     * Bieżąca liczba elementów w stosie.
+     */
+    private int total = TOTAL;
+
+    /**
+     * Zwraca bieżącą liczbę elementów w stosie.
+     *
+     * @return bieżąca liczba elementów w stosie
+     */
+    public int getTotal() {
+        return total;
+    }
+
+    /**
+     * Dodaje nową liczbę całkowitą na stos.
+     *
+     * @param in liczba całkowita do dodania na stos
+     */
+    protected void countIn(int in) {
         if (!isFull())
             NUMBERS[++total] = in;
     }
 
-        public boolean callCheck() {
-            return total == -1;
-        }
-        
-            public boolean isFull() {
-                return total == 11;
-            }
-        
-                protected int peekaboo() {
-                    if (callCheck())
-                        return -1;
-                    return NUMBERS[total];
-                }
-            
-                    public int countOut() {
-                        if (callCheck())
-                            return -1;
-                        return NUMBERS[total--];
-                    }
+    /**
+     * Sprawdza, czy stos jest pusty.
+     *
+     * @return true, jeśli stos jest pusty, w przeciwnym razie false
+     */
+    protected boolean callCheck() {
+        return total == TOTAL;
+    }
+
+    /**
+     * Sprawdza, czy stos jest pełny.
+     *
+     * @return true, jeśli stos jest pełny, w przeciwnym razie false
+     */
+    protected boolean isFull() {
+        return total == FULL;
+    }
+
+    /**
+     * Zwraca wartość na szczycie stosu bez jej usuwania.
+     *
+     * @return wartość na szczycie stosu lub TOTAL, jeśli stos jest pusty
+     */
+    protected int peekaboo() {
+        if (callCheck())
+            return TOTAL;
+        return NUMBERS[total];
+    }
+
+    /**
+     * Usuwa i zwraca wartość na szczycie stosu.
+     *
+     * @return wartość na szczycie stosu lub TOTAL, jeśli stos jest pusty
+     */
+    protected int countOut() {
+        if (callCheck())
+            return TOTAL;
+        return NUMBERS[total--];
+    }
 
 }
